@@ -1,0 +1,15 @@
+.head {
+    position: relative;
+    bottom: 50px;
+    margin: 0;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    background: url('../../img/logo2.jpg');
+  }
+  
+  .h1 {
+    font-style: italic;
+    font-size: 4rem;
+    color: white;
+  }
