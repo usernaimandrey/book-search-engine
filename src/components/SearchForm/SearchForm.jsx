@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import _ from 'lodash';
 import './SearchForm.css';
-import { request } from '../Request';
+import request from '../request.js';
 
 const optionCategories = ['all', 'art', 'allbiography', 'allbiography', 'computers', 'history', 'medical', 'poetry'];
 const SearchForm = () => {
@@ -11,9 +11,10 @@ const SearchForm = () => {
         initialValues: {
             search: '',
             categories: 'all',
+            orderBy: 'relevance',
           },
-        onSubmit: async ({ search, categories }, { resetForm }) => {
-            await request(search, categories);
+        onSubmit: async ({ search, categories, orderBy }, { resetForm }) => {
+            await request(search, categories, orderBy);
             resetForm();
         },
     });
@@ -55,7 +56,7 @@ const SearchForm = () => {
                 <label>
                     <div className="sort">
                         <span className="ctegories-name">Sorting By:</span>
-                        <select name="sorting" className="categories">
+                        <select name="orderBy" className="categories" value={values.orderBy} onChange={handleChange}>
                           <option value="relevance" defaultValue>relevance</option>
                           <option value="newest">newest</option>
                         </select>
