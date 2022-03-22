@@ -1,81 +1,79 @@
-@import url(https://fonts.googleapis.com/css?family=Tenor+Sans|PT+Serif:400,400italic,700,700italic&subset=latin,cyrillic);
-
 .input {
-  width: 500px;
-  height: 40px;
-  background: #444;
-  background: rgba(0,0,0,.2);
-  border-radius:  3px;
-  border: 1px solid #fff;
+    width: 500px;
+    height: 40px;
+    background: #444;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    border: 1px solid #fff;
 }
 
 .select {
-  display: flex;
+    display: flex;
 }
 
 .search {
-  width: 370px;
-  padding: 10px 5px;
-  float: left;
-  border: 0;
-  background: transparent;
-  border-radius: 3px 0 0 3px;
-  font-size: large;
+    width: 370px;
+    padding: 10px 5px;
+    float: left;
+    border: 0;
+    background: transparent;
+    border-radius: 3px 0 0 3px;
+    font-size: large;
 }
 
 .search:focus {
-  outline: 0;
-  background:transparent;
+    outline: 0;
+    background: transparent;
 }
 
 .button {
-  position: relative;
-  float: right;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  height: 40px;
-  width: 120px;
-  background: transparent;
-  border-left: 1px solid #fff;
-  border-radius: 0 3px 3px 0;
-  font-size: medium;
+    position: relative;
+    float: right;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    height: 40px;
+    width: 120px;
+    background: transparent;
+    border-left: 1px solid #fff;
+    border-radius: 0 3px 3px 0;
+    font-size: medium;
 }
 
 .button:hover {
-  background: #fff;
-  color:#444;
+    background: #fff;
+    color: #444;
 }
 
 .button:active {
-  box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+    box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
 }
 .button:focus {
-  outline: 0;
+    outline: 0;
 }
 
 .params {
-  font-family: 'PT Sans Caption', sans-serif;
-  font-size: large;
-  margin-top: 20px;
-  text-align: center;
-  border-radius: 3px;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-size: large;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 3px;
 }
 
 .sort-params {
-  margin-left: 90px;
+    margin-left: 90px;
 }
 
 .categories {
-  position: relative;
-  margin-right: 60px;
-  margin-top: 30px;
-  height: 40px;
-  margin-left: 10px;
-  border-radius: 3px;
+    position: relative;
+    margin-right: 60px;
+    margin-top: 30px;
+    height: 40px;
+    margin-left: 10px;
+    border-radius: 3px;
 }
 
 .ctegories-name {
-  margin-top: 10px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

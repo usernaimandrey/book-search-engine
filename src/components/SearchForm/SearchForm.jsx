@@ -3,18 +3,19 @@ import { useFormik } from 'formik';
 import _ from 'lodash';
 import './SearchForm.css';
 import request from '../request.js';
+import useData from '../../hooks/useData';
 
 const optionCategories = [
     'all',
     'art',
-    'allbiography',
-    'allbiography',
+    'biography',
     'computers',
     'history',
     'medical',
     'poetry',
 ];
 const SearchForm = () => {
+    const { set } = useData();
     const input = useRef();
     const formik = useFormik({
         initialValues: {
@@ -23,8 +24,13 @@ const SearchForm = () => {
             orderBy: 'relevance',
         },
         onSubmit: async ({ search, categories, orderBy }, { resetForm }) => {
-            await request(search, categories, orderBy);
-            resetForm();
+            try {
+                const data = await request(search, categories, orderBy);
+                set(data);
+                resetForm();
+            } catch (err) {
+                throw new Error('Network err');
+            }
         },
     });
     useEffect(() => {
