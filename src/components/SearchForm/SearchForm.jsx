@@ -1,35 +1,54 @@
 import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import _ from 'lodash';
+import { useDispatch } from 'react-redux';
 import './SearchForm.css';
-import request from '../request.js';
-import useData from '../../hooks/useData';
+import {
+    getFetchData,
+    setParamsReq,
+    removeAll,
+} from '../../slices/booksReducer';
 
 const optionCategories = [
-    'all',
-    'art',
-    'biography',
-    'computers',
-    'history',
-    'medical',
-    'poetry',
+    'All',
+    'Art',
+    'Biography',
+    'Computers',
+    'History',
+    'Medical',
+    'Poetry',
 ];
 const SearchForm = () => {
-    const { set } = useData();
+    const dispatch = useDispatch();
     const input = useRef();
     const formik = useFormik({
         initialValues: {
             search: '',
-            categories: 'all',
+            categories: 'All',
             orderBy: 'relevance',
         },
         onSubmit: async ({ search, categories, orderBy }, { resetForm }) => {
             try {
-                const data = await request(search, categories, orderBy);
-                set(data);
+                dispatch(removeAll());
+                dispatch(
+                    setParamsReq({
+                        search,
+                        categories,
+                        orderBy,
+                        startIndex: 0,
+                    })
+                );
+                await dispatch(
+                    getFetchData({
+                        text: search,
+                        categories,
+                        orderBy,
+                        startIndex: 0,
+                    })
+                );
                 resetForm();
             } catch (err) {
-                throw new Error('Network err');
+                throw new Error(`Network err${err}`);
             }
         },
     });

@@ -1,3 +1,37 @@
 .card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 180px;
+    border-radius: 5px;
     margin: 30px;
+    border: 1px solid #fff;
+
+    background-color: #e9e9e9;
+}
+
+.card:hover {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.categories {
+    margin: 0;
+    color: #808080;
+}
+
+.title {
+    margin: 0;
+    color: #000;
+}
+
+.authors {
+    margin: 0;
+    color: #808080;
+}
+
+.imgBook {
+    margin-top: 5px;
 }

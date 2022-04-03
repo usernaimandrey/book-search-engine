@@ -1,11 +1,12 @@
 import axios from 'axios';
 import getRout from '../routes.js';
 
-const request = async (text, categorie, oredrBy) => {
+const request = async (text, categorie, oredrBy, startIndex) => {
     const countItems = 30;
-    const url = new URL(getRout());
-    const subject = categorie === 'all' ? '' : `+subject:${categorie}`;
-    url.searchParams.append('q', `${text}${subject}`);
+    const subject = categorie === 'All' ? '' : `+subject:${categorie}`;
+    const rout = `${getRout()}?q=${text}${subject}`;
+    const url = new URL(rout);
+    url.searchParams.append('startIndex', startIndex);
     url.searchParams.append('maxResults', countItems);
     url.searchParams.append('orderBy', oredrBy);
     url.searchParams.append('key', process.env.REACT_APP_API_KEY);
