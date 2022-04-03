@@ -4,7 +4,7 @@ import {
     selectorsBooks,
     setIndex,
     getFetchData,
-} from '../../slices/booksReducer.jsx';
+} from '../../slices/booksReducer.js';
 import './Cards.css';
 import Card from '../Card/Card.jsx';
 

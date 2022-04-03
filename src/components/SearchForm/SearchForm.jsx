@@ -7,7 +7,7 @@ import {
     getFetchData,
     setParamsReq,
     removeAll,
-} from '../../slices/booksReducer';
+} from '../../slices/booksReducer.js';
 
 const optionCategories = [
     'All',
