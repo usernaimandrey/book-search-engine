@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
 
-h3 {
+.countBooks {
     font-family: 'Playfair Display SC', serif;
     font-weight: 500;
     letter-spacing: 1px;
@@ -37,4 +37,10 @@ h3 {
 .btn:hover {
     color: #000;
     background-color: #ff0000;
+}
+
+@media (max-width: 550px) {
+    .countBooks {
+        padding-top: 300px;
+    }
 }

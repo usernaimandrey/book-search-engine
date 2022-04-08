@@ -3,6 +3,7 @@ import {
     createEntityAdapter,
     createAsyncThunk,
 } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import request from '../components/request';
 
 export const getFetchData = createAsyncThunk(
@@ -27,6 +28,8 @@ export const booksSlices = createSlice({
             orderBy: '',
             startIndex: 0,
         },
+        coordinates: {},
+        err: null,
     }),
 
     reducers: {
@@ -37,24 +40,44 @@ export const booksSlices = createSlice({
             state.paramsReq.startIndex += step;
         },
         removeAll: booksAdapter.removeAll,
+        setCoordinates: (state, { payload }) => {
+            state.coordinates = payload;
+        },
     },
 
     extraReducers: (builder) => {
-        builder.addCase(getFetchData.fulfilled, (state, { payload }) => {
-            const { totalItems, items } = payload;
-            if (!items) {
-                console.log('По вашему запросу ни чего!!!');
-                return;
-            }
-            state.loading = 'success';
-            state.totalItems =
-                state.totalItems === 0 ? totalItems : state.totalItems;
-            booksAdapter.addMany(state, items);
-        });
+        builder
+            .addCase(getFetchData.pending, (state) => {
+                state.loading = 'loading';
+                state.err = null;
+            })
+            .addCase(getFetchData.fulfilled, (state, { payload }) => {
+                const { totalItems, items } = payload;
+                if (!items && !totalItems) {
+                    toast.warning('По вашему запросу ничего не найденно!');
+                    state.loading = 'success';
+                    return;
+                }
+                if (!items) {
+                    toast.warning('В очереди нет книг!');
+                    state.loading = 'success';
+                    return;
+                }
+                state.loading = 'success';
+                state.totalItems = totalItems;
+                booksAdapter.addMany(state, items);
+                toast.success('Все книги загруженны!');
+            })
+            .addCase(getFetchData.rejected, (state, actions) => {
+                state.loading = 'failed';
+                state.err = actions.error;
+                toast.error('Проверьте соеденение или параметры запроса!');
+            });
     },
 });
 
-export const { setParamsReq, setIndex, removeAll } = booksSlices.actions;
+export const { setParamsReq, setIndex, removeAll, setCoordinates } =
+    booksSlices.actions;
 
 export const selectorsBooks = booksAdapter.getSelectors((state) => state.books);
 

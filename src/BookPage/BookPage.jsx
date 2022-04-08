@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -6,6 +6,10 @@ import { selectorsBooks } from '../slices/booksReducer';
 import './BookPage.css';
 
 const BookPage = () => {
+    const pageRef = useRef();
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const { id } = useParams();
     const books = useSelector(selectorsBooks.selectAll);
     if (books.length === 0) {
@@ -15,7 +19,7 @@ const BookPage = () => {
     const { volumeInfo } = book;
     console.log(book);
     return (
-        <div className="bookDescription">
+        <div ref={pageRef} className="bookDescription">
             <div>
                 <Link to="/" className="back">
                     <p>На главную</p>
@@ -28,7 +32,7 @@ const BookPage = () => {
             </div>
             <div className="containerTextBook">
                 <div className="titleBook">
-                    <h3 class="headTitle">{volumeInfo.title}</h3>
+                    <h3 className="headTitle">{volumeInfo.title}</h3>
                 </div>
                 <div className="categoriesBook">
                     <p>{volumeInfo?.categories}</p>
