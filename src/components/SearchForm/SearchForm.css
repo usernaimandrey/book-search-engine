@@ -8,6 +8,7 @@
 }
 
 .select {
+    margin: 10px;
     display: flex;
 }
 
@@ -76,4 +77,27 @@
 .ctegories-name {
     margin-top: 10px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+@media (max-width: 500px) {
+    .button {
+        margin-left: 10px;
+        height: 40px;
+        width: 60px;
+        background-color: #fff;
+    }
+
+    .input {
+        display: flex;
+        width: 250px;
+        height: 40px;
+    }
+
+    .categoriesContainer {
+        font-size: small;
+    }
+
+    .params {
+        font-size: small;
+    }
 }

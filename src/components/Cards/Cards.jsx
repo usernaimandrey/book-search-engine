@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     selectorsBooks,
@@ -13,10 +14,8 @@ const Cards = () => {
     const dispatch = useDispatch();
     const items = useSelector(selectorsBooks.selectAll);
     const { totalItems, paramsReq } = useSelector((state) => state.books);
-    console.log(paramsReq.startIndex, items);
     const diff = totalItems - items.length;
     const step = diff > 30 ? 30 : diff;
-    console.log(step, diff);
     const hendler = async (e) => {
         e.preventDefault();
         if (!step) {
@@ -35,10 +34,16 @@ const Cards = () => {
                         id,
                         volumeInfo: { title, authors, imageLinks, categories },
                     }) => (
-                        <Card
-                            key={id}
-                            data={{ authors, title, imageLinks, categories }}
-                        />
+                        <Link to={`/${id}`} key={id}>
+                            <Card
+                                data={{
+                                    authors,
+                                    title,
+                                    imageLinks,
+                                    categories,
+                                }}
+                            />
+                        </Link>
                     )
                 )}
             </div>

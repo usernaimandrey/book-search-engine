@@ -42,7 +42,6 @@ export const booksSlices = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getFetchData.fulfilled, (state, { payload }) => {
             const { totalItems, items } = payload;
-            console.log(items);
             if (!items) {
                 console.log('По вашему запросу ни чего!!!');
                 return;

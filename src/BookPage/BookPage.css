@@ -1,0 +1,95 @@
+.bookDescription {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    margin: 0;
+}
+
+.containerTextBook {
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.categoriesBook {
+    margin: 0;
+    color: #808080;
+}
+
+.authorsBook {
+    margin: 0;
+    color: #808080;
+}
+
+.imgBookPage {
+    margin: 15px;
+    border-radius: 5px;
+    height: 500px;
+    width: 400px;
+    background-color: cadetblue;
+}
+
+.headTitle {
+    padding: 0;
+}
+
+.description {
+    margin: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.authorsBook {
+    margin: 20px;
+}
+
+.categoriesBook {
+    margin-left: 20px;
+}
+
+.link:hover {
+    color: #cf0000;
+    text-decoration: none;
+}
+
+.back {
+    align-self: baseline;
+    text-decoration: none;
+    left: 30px;
+    color: #0f7afc;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(15, 122, 252, 0.2);
+}
+
+.back:hover {
+    text-decoration: none;
+    color: #cf0000;
+    border-bottom-color: rgba(208, 64, 0, 0.2);
+}
+
+.back:visited {
+    text-decoration: none;
+    color: #800080;
+    border-bottom-color: rgba(128, 0, 128, 0.2);
+}
+
+@media (max-width: 770px) {
+    .bookDescription {
+        flex-direction: column;
+    }
+
+    .imgBookPage {
+        margin: 10px;
+        border-radius: 5px;
+        height: 300px;
+        width: 200px;
+        background-color: cadetblue;
+    }
+}
+
+@media (max-width: 990px) {
+    .bookDescription {
+        align-items: flex-start;
+    }
+}

@@ -5,7 +5,6 @@ const Card = (props) => {
     const {
         data: { authors, title, imageLinks, categories },
     } = props;
-    // console.log(authors, title, imageLinks, categories);
     return (
         <div className="card">
             <div className="imgBook">
