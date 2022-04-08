@@ -17,7 +17,6 @@ const BookPage = () => {
     }
     const book = books.find((el) => el.id === id);
     const { volumeInfo } = book;
-    console.log(book);
     return (
         <div ref={pageRef} className="bookDescription">
             <div>
