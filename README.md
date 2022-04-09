@@ -8,4 +8,4 @@
 2. Redux Toolkit
 3. Приложение работает через Google Books API
 
-## Демонстрация на [Vercel](https://book-search-engine-leupkm5i0-usernaimandrey.vercel.app/)
+## Демонстрация на [Vercel](https://book-search-engine-qm8or0pmu-usernaimandrey.vercel.app/)
