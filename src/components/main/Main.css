@@ -6,6 +6,7 @@
     justify-content: space-evenly;
     position: relative;
     align-items: center;
+    z-index: 2;
     bottom: 50px;
     margin: 0;
     width: 100vw;

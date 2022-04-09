@@ -14,6 +14,14 @@ export const getFetchData = createAsyncThunk(
     }
 );
 
+export const loadBooks = createAsyncThunk(
+    'books/loadBooks',
+    async ({ text, categories, orderBy, startIndex }) => {
+        const data = await request(text, categories, orderBy, startIndex);
+        return data;
+    }
+);
+
 const booksAdapter = createEntityAdapter();
 
 export const booksSlices = createSlice({
@@ -56,11 +64,7 @@ export const booksSlices = createSlice({
                 if (!items && !totalItems) {
                     toast.warning('По вашему запросу ничего не найденно!');
                     state.loading = 'success';
-                    return;
-                }
-                if (!items) {
-                    toast.warning('В очереди нет книг!');
-                    state.loading = 'success';
+                    state.totalItems = 0;
                     return;
                 }
                 state.loading = 'success';
@@ -71,7 +75,24 @@ export const booksSlices = createSlice({
             .addCase(getFetchData.rejected, (state, actions) => {
                 state.loading = 'failed';
                 state.err = actions.error;
-                toast.error('Проверьте соеденение или параметры запроса!');
+                toast.error('Проверьте соеденение');
+            });
+        builder
+            .addCase(loadBooks.fulfilled, (state, { payload }) => {
+                const { items } = payload;
+                if (!items) {
+                    toast.warning('В очереди нет книг!');
+                    state.loading = 'success';
+                    return;
+                }
+                state.loading = 'success';
+                booksAdapter.addMany(state, items);
+                toast.success('Книги добавленны');
+            })
+            .addCase(loadBooks.rejected, (state, actions) => {
+                state.loading = 'failed';
+                state.err = actions.error;
+                toast.error('Проверьте соеденение');
             });
     },
 });

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import {
     selectorsBooks,
     setIndex,
-    getFetchData,
+    loadBooks,
     setCoordinates,
 } from '../../slices/booksReducer.js';
 import './Cards.css';
@@ -32,7 +32,7 @@ const Cards = () => {
             return;
         }
         dispatch(setIndex({ step }));
-        await dispatch(getFetchData(paramsReq));
+        await dispatch(loadBooks(paramsReq));
     };
     const scroll = () => {
         const y = window.pageYOffset;

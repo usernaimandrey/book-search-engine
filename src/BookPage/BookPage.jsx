@@ -19,13 +19,13 @@ const BookPage = () => {
     const { volumeInfo } = book;
     return (
         <div ref={pageRef} className="bookDescription">
-            <div>
+            <div className="imgBookPageContainer">
                 <Link to="/" className="back">
                     <p>На главную</p>
                 </Link>
                 <img
                     className="imgBookPage"
-                    src={volumeInfo?.imageLinks.thumbnail}
+                    src={volumeInfo?.imageLinks?.thumbnail}
                     alt="Обложка книги"
                 />
             </div>
@@ -37,7 +37,7 @@ const BookPage = () => {
                     <p>{volumeInfo?.categories}</p>
                 </div>
                 <div className="authorsBook">
-                    <p>{volumeInfo?.authors.join(', ')}</p>
+                    <p>{volumeInfo?.authors?.join(', ')}</p>
                 </div>
                 <div className="description">
                     <p>{volumeInfo?.description}</p>
