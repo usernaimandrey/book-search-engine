@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectorsBooks } from '../slices/booksReducer';
+import { selectorsBooks } from '../../slices/booksReducer.js';
 import './BookPage.css';
 
 const BookPage = () => {

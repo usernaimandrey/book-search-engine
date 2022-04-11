@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import {
     selectorsBooks,
     setIndex,
@@ -13,6 +14,7 @@ import Card from '../Card/Card.jsx';
 import Spinner from '../../spinner/Spinner.jsx';
 
 const Cards = () => {
+    const { t } = useTranslation();
     const [stateButton, setState] = useState(false);
     const dispatch = useDispatch();
     const items = useSelector(selectorsBooks.selectAll);
@@ -43,7 +45,7 @@ const Cards = () => {
         <>
             {loading === 'loading' ? <Spinner /> : null}
             {totalItems && (
-                <h3 className="countBooks">{`Найденных книг: ${totalItems}`}</h3>
+                <h3 className="countBooks">{`${t('cards')} ${totalItems}`}</h3>
             )}
             <div className="container">
                 {items?.map(

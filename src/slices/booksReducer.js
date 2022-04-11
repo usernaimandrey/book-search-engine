@@ -38,6 +38,7 @@ export const booksSlices = createSlice({
         },
         coordinates: {},
         err: null,
+        lng: 'en',
     }),
 
     reducers: {
@@ -97,7 +98,7 @@ export const booksSlices = createSlice({
     },
 });
 
-export const { setParamsReq, setIndex, removeAll, setCoordinates } =
+export const { setParamsReq, setIndex, removeAll, setCoordinates, setLng } =
     booksSlices.actions;
 
 export const selectorsBooks = booksAdapter.getSelectors((state) => state.books);
