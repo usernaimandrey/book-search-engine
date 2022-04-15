@@ -52,6 +52,10 @@ export const booksSlices = createSlice({
         setCoordinates: (state, { payload }) => {
             state.coordinates = payload;
         },
+        setLng: (state, { payload }) => {
+            const { value } = payload;
+            state.lng = value;
+        }
     },
 
     extraReducers: (builder) => {

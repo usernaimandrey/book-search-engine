@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: aquamarine;
     color: #000;
     margin: 0;
 }
@@ -10,8 +11,9 @@
     background-color: aquamarine;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-radius: 5px;
-    min-height: 500px;
+    min-height: 100%;
     min-width: 400px;
 }
 
@@ -26,10 +28,10 @@
 }
 
 .imgBookPageContainer {
+    align-self: baseline;
     min-height: 500px;
     min-width: 400px;
     border-radius: 5px;
-    background-color: #fff;
 }
 
 .imgBookPage {
@@ -49,13 +51,11 @@
     min-width: 300px;
 }
 
-.authorsBook {
-    margin: 20px;
+
+.linkContainer {
+    margin-bottom: 384px;
 }
 
-.categoriesBook {
-    margin-left: 20px;
-}
 
 .link:hover {
     color: #cf0000;

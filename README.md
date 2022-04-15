@@ -14,3 +14,28 @@
 6. Пагинация LoadMore
 
 ## Демонстрация на [Vercel](https://book-search-engine-qm8or0pmu-usernaimandrey.vercel.app/)
+
+## Приложение можно запустить локально в изолированном окружении.
+### Для этого у вас должен быть установленн Vagrant и VirtualBox:
+1. Склонируйте репозеторий:
+```
+git clone https://github.com/usernaimandrey/book-search-engine.git
+cd book-search-engine
+
+```
+2. Инициализируем Vagrant:
+```
+vagrant up
+
+```
+3. Подключамся:
+```
+vagrant ssh
+
+```
+4. Переходим в папку с проектом и запускаем dev-сервер:
+```
+cd /vagrant
+make start
+
+```

@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './SearchForm.css';
 import {
     getFetchData,
@@ -9,16 +10,49 @@ import {
     removeAll,
 } from '../../slices/booksReducer.js';
 
-const optionCategories = [
-    'All',
-    'Art',
-    'Biography',
-    'Computers',
-    'History',
-    'Medical',
-    'Poetry',
+const optionCategoriesEn = [
+    ['All', 'All'],
+    ['Art', 'Art'],
+    ['Biography', 'Biography'],
+    ['Computers', 'Computers'],
+    ['History', 'History'],
+    ['Medical', 'Medical'],
+    ['Poetry', 'Poetry'],
 ];
+const optionCategoriesRu = [
+    ['All', 'Все'],
+    ['Art', 'Арт'], 
+    ['Biography', 'Биография'], 
+    ['Computers', 'Компьютеры'], 
+    ['History', 'История'], 
+    ['Medical', 'Медицина'], 
+    ['Poetry', 'Химия'],
+];
+
+const sortEn = [
+    ['relevance', 'relevance'],
+    ['newest', 'newest'],
+];
+
+const sortRu = [
+    ['relevance', 'Актуальные'],
+    ['newest', 'Новые'],
+];
+
+const sortOpt = {
+    en: sortEn,
+    ru: sortRu,
+}
+
+const optionsCat = {
+    ru: optionCategoriesRu,
+    en: optionCategoriesEn,
+};
+
 const SearchForm = () => {
+    const { lng } = useSelector((state) => state.books);
+    console.log(lng);
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const input = useRef();
     const formik = useFormik({
@@ -58,12 +92,12 @@ const SearchForm = () => {
     const { isSubmitting, handleSubmit, handleChange, values } = formik;
     return (
         <form className="params" onSubmit={handleSubmit}>
-            <label>
-                <div className="input">
+            <label htmlFor="input" className='sr-only'>{t('inputPlaceHolder')}</label>
+                <div className="input" id="input">
                     <input
                         type="search"
                         name="search"
-                        placeholder="find your book..."
+                        placeholder={t('inputPlaceHolder')}
                         required
                         className="search"
                         value={values.search}
@@ -72,62 +106,65 @@ const SearchForm = () => {
                     />
                     <input
                         type="submit"
-                        value="Search"
+                        value={t('button')}
                         className="button"
                         disabled={isSubmitting}
                     />
                 </div>
-            </label>
             <div className="select">
-                <label>
+            <label htmlFor="catigories" className='sr-only'>{t('catigories')}</label>
                     <div className="categoriesContainer">
-                        <span className="ctegories-name">Categories:</span>
+                        <span className="ctegories-name">{t('catigories')}</span>
                         <select
+                        id="catigories"
                             name="categories"
                             className="categories"
                             value={values.categories}
                             onChange={handleChange}
                         >
-                            {optionCategories.map((catigorie) => {
-                                if (catigorie === 'all') {
+                            {optionsCat[lng].map(([key, val]) => {
+                                if (key === 'all') {
                                     return (
                                         <option
                                             key={_.uniqueId()}
-                                            value={catigorie}
+                                            value={key}
                                             defaultValue
                                         >
-                                            {catigorie}
+                                            {val}
                                         </option>
                                     );
                                 }
                                 return (
                                     <option
                                         key={_.uniqueId()}
-                                        value={catigorie}
+                                        value={key}
                                     >
-                                        {catigorie}
+                                        {val}
                                     </option>
                                 );
                             })}
                         </select>
                     </div>
-                </label>
-                <label>
+                <label htmlFor="order" className='sr-only'>{t('sort')}</label>
                     <div className="sort">
-                        <span className="ctegories-name">Sorting By:</span>
+                        <span className="ctegories-name">{t('sort')}</span>
                         <select
+                        id="order"
                             name="orderBy"
                             className="categories"
                             value={values.orderBy}
                             onChange={handleChange}
                         >
-                            <option value="relevance" defaultValue>
-                                relevance
-                            </option>
-                            <option value="newest">newest</option>
+                            {sortOpt[lng].map(([key, val]) => {
+                                if (key === 'relevance') {
+                                    return (
+                                        <option value={key} defaultValue>{val}</option>
+                                    );
+                                }
+                                return <option value={key}>{val}</option>
+                            })}
                         </select>
                     </div>
-                </label>
             </div>
         </form>
     );
