@@ -13,7 +13,7 @@
 5. Обработка форм Formik
 6. Пагинация LoadMore
 
-## Демонстрация на [Vercel](https://book-search-engine-qm8or0pmu-usernaimandrey.vercel.app/)
+## Демонстрация на [Vercel](https://book-search-engine-j351ljg46-usernaimandrey.vercel.app/)
 
 ## Приложение можно запустить локально в изолированном окружении.
 ### Для этого у вас должен быть установленн Vagrant и VirtualBox:
