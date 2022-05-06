@@ -1,10 +1,10 @@
 const sortEn = [
-    ['relevance', 'relevance'],
+    ['*relevance', 'relevance'],
     ['newest', 'newest'],
 ];
 
 const sortRu = [
-    ['relevance', 'Актуальные'],
+    ['*relevance', 'Актуальные'],
     ['newest', 'Новые'],
 ];
 

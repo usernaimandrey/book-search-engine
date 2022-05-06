@@ -11,6 +11,7 @@ import {
 } from '../../slices/booksReducer.js';
 import Input from '../input/Input.jsx';
 import Button from '../button/Button.jsx';
+import SelectCategories from '../selectCategories/SelectCategories.jsx';
 
 
 const SearchForm = () => {
@@ -70,35 +71,14 @@ const SearchForm = () => {
             <label htmlFor="catigories" className='sr-only'>{t('catigories')}</label>
                     <div className="categoriesContainer">
                         <span className="ctegories-name">{t('catigories')}</span>
-                        <select
-                        id="catigories"
-                            name="categories"
-                            className="categories"
+                        <SelectCategories
+                            id={'categories'}
+                            name={'categories'}
+                            className={'categories'}
                             value={values.categories}
-                            onChange={handleChange}
-                        >
-                            {categoryOptions[lng].map(([key, val]) => {
-                                if (key === 'all') {
-                                    return (
-                                        <option
-                                            key={_.uniqueId()}
-                                            value={key}
-                                            defaultValue
-                                        >
-                                            {val}
-                                        </option>
-                                    );
-                                }
-                                return (
-                                    <option
-                                        key={_.uniqueId()}
-                                        value={key}
-                                    >
-                                        {val}
-                                    </option>
-                                );
-                            })}
-                        </select>
+                            hendler={handleChange}
+                            options={categoryOptions[lng]}
+                        />
                     </div>
                 <label htmlFor="order" className='sr-only'>{t('sort')}</label>
                     <div className="sort">

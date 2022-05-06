@@ -11,4 +11,13 @@
 .search:focus {
     outline: 0;
     background: transparent;
+    color: #fff;
+}
+
+@media (max-width: 500px) {
+    .input {
+        display: flex;
+        width: 250px;
+        height: 40px;
+    }
 }

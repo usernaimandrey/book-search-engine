@@ -1,5 +1,5 @@
 const optionCategoriesEn = [
-    ['All', 'All'],
+    ['*All', 'All'],
     ['Art', 'Art'],
     ['Biography', 'Biography'],
     ['Computers', 'Computers'],
@@ -8,7 +8,7 @@ const optionCategoriesEn = [
     ['Poetry', 'Poetry'],
 ];
 const optionCategoriesRu = [
-    ['All', 'Все'],
+    ['*All', 'Все'],
     ['Art', 'Арт'], 
     ['Biography', 'Биография'], 
     ['Computers', 'Компьютеры'], 
