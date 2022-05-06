@@ -10,6 +10,7 @@ import {
     removeAll,
 } from '../../slices/booksReducer.js';
 import Input from '../input/Input.jsx';
+import Button from '../button/Button.jsx';
 
 
 const SearchForm = () => {
@@ -63,12 +64,7 @@ const SearchForm = () => {
                         ref={input}
                         handler={handleChange}
                         />
-                    <input
-                        type="submit"
-                        value={t('button')}
-                        className="button"
-                        disabled={isSubmitting}
-                    />
+                    <Button type={'submit'} value={t('button')} className={'button'} disabled={isSubmitting} />
                 </div>
             <div className="select">
             <label htmlFor="catigories" className='sr-only'>{t('catigories')}</label>
