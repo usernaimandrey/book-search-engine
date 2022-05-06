@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import './SearchForm.css';
 import {
@@ -12,6 +11,7 @@ import {
 import Input from '../input/Input.jsx';
 import Button from '../button/Button.jsx';
 import SelectCategories from '../selectCategories/SelectCategories.jsx';
+import SortSelection from '../SortSelection/SortSelection.jsx';
 
 
 const SearchForm = () => {
@@ -76,14 +76,22 @@ const SearchForm = () => {
                             name={'categories'}
                             className={'categories'}
                             value={values.categories}
-                            hendler={handleChange}
+                            handler={handleChange}
                             options={categoryOptions[lng]}
                         />
                     </div>
                 <label htmlFor="order" className='sr-only'>{t('sort')}</label>
                     <div className="sort">
                         <span className="ctegories-name">{t('sort')}</span>
-                        <select
+                        <SortSelection
+                            id={'order'}
+                            name={'orderBy'}
+                            className={'categories'}
+                            value={values.orderBy}
+                            handler={handleChange}
+                            options={sortOptions[lng]}
+                        />
+                        {/* <select
                             id="order"
                             name="orderBy"
                             className="categories"
@@ -98,7 +106,7 @@ const SearchForm = () => {
                                 }
                                 return <option key={_.uniqueId()} value={key}>{val}</option>
                             })}
-                        </select>
+                        </select> */}
                     </div>
             </div>
         </form>

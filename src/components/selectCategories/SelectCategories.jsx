@@ -2,7 +2,7 @@ import React from 'react';
 import './selectCategories.css';
 
 const SelectCategories = ({
-    id, name, className, value, hendler, options,
+    id, name, className, value, handler, options,
   }) => {
     return (
       <select
@@ -10,7 +10,7 @@ const SelectCategories = ({
         name={name}
         className={className}
         value={value}
-        onChange={hendler}
+        onChange={handler}
       >
         {options.map(([key, val]) => {
           if (key.startsWith('*')) {
