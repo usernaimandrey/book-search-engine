@@ -6,7 +6,6 @@ const en = {
         button: 'Search',
         catigories: 'Categories:',
         sort: 'Sorting By:',
-        categoriesOpt: [['All', 'All'],['Art', 'Art'], ['Biography', 'Biography'], ['Computers', 'Computers'], ['History', 'History'], ['Medical', 'Medical'], ['Poetry', 'Poetry']],
     },
 };
 

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
@@ -9,52 +9,16 @@ import {
     setParamsReq,
     removeAll,
 } from '../../slices/booksReducer.js';
+import Input from '../input/Input.jsx';
 
-const optionCategoriesEn = [
-    ['All', 'All'],
-    ['Art', 'Art'],
-    ['Biography', 'Biography'],
-    ['Computers', 'Computers'],
-    ['History', 'History'],
-    ['Medical', 'Medical'],
-    ['Poetry', 'Poetry'],
-];
-const optionCategoriesRu = [
-    ['All', 'Все'],
-    ['Art', 'Арт'], 
-    ['Biography', 'Биография'], 
-    ['Computers', 'Компьютеры'], 
-    ['History', 'История'], 
-    ['Medical', 'Медицина'], 
-    ['Poetry', 'Химия'],
-];
-
-const sortEn = [
-    ['relevance', 'relevance'],
-    ['newest', 'newest'],
-];
-
-const sortRu = [
-    ['relevance', 'Актуальные'],
-    ['newest', 'Новые'],
-];
-
-const sortOpt = {
-    en: sortEn,
-    ru: sortRu,
-}
-
-const optionsCat = {
-    ru: optionCategoriesRu,
-    en: optionCategoriesEn,
-};
 
 const SearchForm = () => {
     const { lng } = useSelector((state) => state.books);
-    console.log(lng);
+    const { categoryOptions, sortOptions } = useSelector((state) => state.books);
+
     const { t } = useTranslation();
     const dispatch = useDispatch();
-    const input = useRef();
+    const input = React.createRef();
     const formik = useFormik({
         initialValues: {
             search: '',
@@ -62,48 +26,43 @@ const SearchForm = () => {
             orderBy: 'relevance',
         },
         onSubmit: async ({ search, categories, orderBy }, { resetForm }) => {
-            try {
-                dispatch(removeAll());
-                dispatch(
-                    setParamsReq({
-                        search,
-                        categories,
-                        orderBy,
-                        startIndex: 0,
-                    })
-                );
-                await dispatch(
-                    getFetchData({
-                        text: search,
-                        categories,
-                        orderBy,
-                        startIndex: 0,
-                    })
-                );
-                resetForm();
-            } catch (err) {
-                throw new Error(`Network err${err}`);
-            }
+            dispatch(removeAll());
+            dispatch(
+                setParamsReq({
+                    search,
+                    categories,
+                    orderBy,
+                    startIndex: 0,
+                })
+            );
+            await dispatch(
+                getFetchData({
+                    text: search,
+                    categories,
+                    orderBy,
+                    startIndex: 0,
+                })
+            );
+            resetForm();
         },
     });
     useEffect(() => {
         input.current.focus();
-    }, []);
+    });
     const { isSubmitting, handleSubmit, handleChange, values } = formik;
     return (
         <form className="params" onSubmit={handleSubmit}>
             <label htmlFor="input" className='sr-only'>{t('inputPlaceHolder')}</label>
                 <div className="input" id="input">
-                    <input
-                        type="search"
-                        name="search"
+                    <Input
+                        type='search'
+                        name='search'
+                        required={true}
                         placeholder={t('inputPlaceHolder')}
-                        required
-                        className="search"
                         value={values.search}
                         ref={input}
-                        onChange={handleChange}
-                    />
+                        handler={handleChange}
+                        />
                     <input
                         type="submit"
                         value={t('button')}
@@ -122,7 +81,7 @@ const SearchForm = () => {
                             value={values.categories}
                             onChange={handleChange}
                         >
-                            {optionsCat[lng].map(([key, val]) => {
+                            {categoryOptions[lng].map(([key, val]) => {
                                 if (key === 'all') {
                                     return (
                                         <option
@@ -149,19 +108,19 @@ const SearchForm = () => {
                     <div className="sort">
                         <span className="ctegories-name">{t('sort')}</span>
                         <select
-                        id="order"
+                            id="order"
                             name="orderBy"
                             className="categories"
                             value={values.orderBy}
                             onChange={handleChange}
                         >
-                            {sortOpt[lng].map(([key, val]) => {
+                            {sortOptions[lng].map(([key, val]) => {
                                 if (key === 'relevance') {
                                     return (
-                                        <option value={key} defaultValue>{val}</option>
+                                        <option key={_.uniqueId()} value={key} defaultValue>{val}</option>
                                     );
                                 }
-                                return <option value={key}>{val}</option>
+                                return <option key={_.uniqueId()} value={key}>{val}</option>
                             })}
                         </select>
                     </div>

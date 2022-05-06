@@ -5,6 +5,8 @@ import {
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import request from '../components/request';
+import sortOptions from '../selectOptions/sortingOptions.js';
+import categoryOptions from '../selectOptions/categoryOptions.js';
 
 export const getFetchData = createAsyncThunk(
     'books/getFetchData',
@@ -39,6 +41,8 @@ export const booksSlices = createSlice({
         coordinates: {},
         err: null,
         lng: 'en',
+        categoryOptions,
+        sortOptions,
     }),
 
     reducers: {
