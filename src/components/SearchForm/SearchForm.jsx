@@ -57,8 +57,9 @@ const SearchForm = () => {
             <label htmlFor="input" className='sr-only'>{t('inputPlaceHolder')}</label>
                 <div className="input" id="input">
                     <Input
-                        type='search'
-                        name='search'
+                        type={'text'}
+                        name={'search'}
+                        className={'search'}
                         required={true}
                         placeholder={t('inputPlaceHolder')}
                         value={values.search}
@@ -91,22 +92,6 @@ const SearchForm = () => {
                             handler={handleChange}
                             options={sortOptions[lng]}
                         />
-                        {/* <select
-                            id="order"
-                            name="orderBy"
-                            className="categories"
-                            value={values.orderBy}
-                            onChange={handleChange}
-                        >
-                            {sortOptions[lng].map(([key, val]) => {
-                                if (key === 'relevance') {
-                                    return (
-                                        <option key={_.uniqueId()} value={key} defaultValue>{val}</option>
-                                    );
-                                }
-                                return <option key={_.uniqueId()} value={key}>{val}</option>
-                            })}
-                        </select> */}
                     </div>
             </div>
         </form>

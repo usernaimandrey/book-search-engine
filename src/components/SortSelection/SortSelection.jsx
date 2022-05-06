@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './sortSelection.css';
 
 const SortSelection = (props) => {
@@ -23,4 +24,20 @@ const SortSelection = (props) => {
     );
   };
 
-  export default SortSelection;
+SortSelection.defaultProps = {
+  id: '',
+  value: '',
+  name: '',
+  className: '',
+  handler: () => {},
+};
+
+SortSelection.propTypes = {
+  id: PropTypes.string,
+  value: PropTypes.string,
+  name: PropTypes.string,
+  className: PropTypes.string,
+  handler: PropTypes.func,
+};
+
+export default SortSelection;

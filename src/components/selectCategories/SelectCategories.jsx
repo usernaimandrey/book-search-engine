@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './selectCategories.css';
 
 const SelectCategories = ({
@@ -35,6 +36,24 @@ const SelectCategories = ({
         })}
       </select>
     );
+  };
+
+  SelectCategories.defaultProps = {
+    id: '',
+    name: '',
+    className: '',
+    value: '',
+    handler: () => {},
+    options: [],
+  };
+
+  SelectCategories.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    className: PropTypes.string,
+    value: PropTypes.string,
+    handler: PropTypes.func,
+    options: PropTypes.array,
   };
 
   export default SelectCategories;

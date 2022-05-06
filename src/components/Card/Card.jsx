@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Card.css';
 
 const Card = (props) => {
@@ -24,6 +25,20 @@ const Card = (props) => {
             </div>
         </div>
     );
+};
+
+Card.defaultProps = {
+    authors: '',
+    title: '',
+    imageLinks: {},
+    categories: [],
+};
+
+Card.propsTypes = {
+    authors: PropTypes.string,
+    title: PropTypes.string,
+    imageLinks: PropTypes.object,
+    categories: PropTypes.array,
 };
 
 export default Card;
